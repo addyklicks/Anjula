@@ -2,60 +2,152 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Anjula, will you be my valentine?</title>
+    <meta name="description" content="Anjula, one question, two buttons. Will you be my valentine?">
+    <meta name="theme-color" content="#fbfbfd">
+    <meta property="og:title" content="Anjula, will you be my valentine?">
+    <meta property="og:description" content="One question. Two buttons. Choose wisely.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23e11d48' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>document.documentElement.classList.add('js');</script>
+    <!-- Same confetti library and version as the original site -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="background-emojis"></div>
-    
-    <div class="container">
-        <!-- Proposal Section -->
-        <div id="proposal-section">
-            <h1>Hema, will you be my valentine? 💘</h1>
-            <div class="cupids">
-                🧚‍♀️ 🏹 ❤️ 🧚‍♂️
-            </div>
-            <div class="buttons">
-                <button id="yes-btn">Yes 💖</button>
-                <button id="no-btn">No 💔</button>
+    <!-- Frosted sticky nav -->
+    <nav class="nav" id="nav" aria-label="Page">
+        <div class="nav__inner">
+            <a class="nav__brand" href="#top">Anjula</a>
+            <div class="nav__right">
+                <span class="nav__meta">Valentine&rsquo;s Day</span>
+                <a class="pill pill--sm" id="nav-cta" href="#top">Answer</a>
             </div>
         </div>
+    </nav>
 
-        <!-- Success Section (Hidden initially) -->
-        <div id="success-section" class="hidden">
-            <h1>I knew it! 🎉❤️</h1>
-            <p class="subtitle">I will pick you up!</p>
-            
-            <div class="date-card">
-                <h2>📅 The Plan</h2>
-                <div class="event-details">
-                    <h3>Candlelight: Timeless Love Songs from Classic Films</h3>
-                    
-                    <div class="detail-item">
-                        <span class="icon">📍</span>
-                        <div class="text">
-                            <strong>Address:</strong><br>
-                            The Quorum Gurgaon, Two Horizon Center,<br>
-                            First Floor, Golf Course Road,<br>
-                            DLF Phase 5, Sector 43, Gurugram
-                        </div>
+    <main id="top">
+        <!-- Proposal Section (first screen) -->
+        <section class="hero" id="proposal-section" aria-labelledby="proposal-title">
+            <div class="hero__glow" aria-hidden="true"></div>
+
+            <div class="reveal" style="--d:.05s">
+                <svg class="hero__heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <defs>
+                        <linearGradient id="heartFill" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#ff7a93"/>
+                            <stop offset=".55" stop-color="#e11d48"/>
+                            <stop offset="1" stop-color="#9f1239"/>
+                        </linearGradient>
+                        <radialGradient id="heartShine" cx=".32" cy=".28" r=".42">
+                            <stop offset="0" stop-color="#fff" stop-opacity=".75"/>
+                            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+                        </radialGradient>
+                    </defs>
+                    <path fill="url(#heartFill)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    <path fill="url(#heartShine)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+
+            <p class="eyebrow reveal" style="--d:.15s">Valentine&rsquo;s Day</p>
+            <h1 id="proposal-title" class="hero__title reveal" style="--d:.25s">Anjula, will you be my <span class="accent">valentine?</span></h1>
+            <p class="hero__sub reveal" style="--d:.4s">One question. Two buttons. Choose wisely.</p>
+
+            <div class="hero__actions reveal" id="question" style="--d:.55s">
+                <button id="yes-btn" class="pill pill--lg pill--primary" type="button">Yes</button>
+                <span class="no-slot" id="no-slot">
+                    <button id="no-btn" class="pill pill--lg pill--secondary" type="button">No</button>
+                </span>
+            </div>
+
+            <p class="hero__answered" id="answered" hidden aria-live="polite">You said yes. Best answer ever.</p>
+
+            <a class="scroll-cue" href="#teaser-section" id="scroll-cue" aria-label="Scroll down">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+        </section>
+
+        <!-- Teaser shown before she answers -->
+        <section class="section section--alt" id="teaser-section" aria-labelledby="teaser-title">
+            <div class="section__inner">
+                <p class="eyebrow reveal">The plan</p>
+                <h2 id="teaser-title" class="headline reveal" style="--d:.1s">Something special<br class="br-wide"> is planned.</h2>
+                <p class="lead reveal" style="--d:.2s">An evening out, already taken care of. All it needs is one little yes.</p>
+
+                <div class="features">
+                    <div class="feature reveal" style="--d:.05s">
+                        <p class="feature__big">An evening</p>
+                        <p class="feature__text">Set aside for just the two of us.</p>
                     </div>
-
-                    <div class="detail-item">
-                        <span class="icon">🕒</span>
-                        <div class="text">
-                            <strong>Date & Time:</strong><br>
-                            Sat 14 Feb - 07:00 pm
-                        </div>
+                    <div class="feature reveal" style="--d:.15s">
+                        <p class="feature__big">Music</p>
+                        <p class="feature__text">Songs you already know by heart.</p>
+                    </div>
+                    <div class="feature reveal" style="--d:.25s">
+                        <p class="feature__big">Door to door</p>
+                        <p class="feature__text">You won&rsquo;t have to plan a thing.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <script src="script.js"></script>
+                <div class="locked reveal reveal--scale">
+                    <div class="locked__lines" aria-hidden="true">
+                        <span></span><span></span><span class="short"></span><span class="shorter"></span>
+                    </div>
+                    <div class="locked__badge">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2.5" fill="currentColor"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                        Unlocks when you say yes
+                    </div>
+                </div>
+
+                <a class="link reveal" href="#top">Answer the question <span aria-hidden="true">&#8250;</span></a>
+            </div>
+        </section>
+
+        <!-- Success Section (hidden until Yes) -->
+        <section class="success" id="success-section" aria-labelledby="success-title" hidden>
+            <div class="section__inner">
+                <p class="eyebrow reveal">It&rsquo;s a date</p>
+                <h2 id="success-title" class="success__title reveal" style="--d:.1s">I knew it!</h2>
+                <p class="success__sub reveal" style="--d:.2s">Here&rsquo;s the plan.</p>
+            </div>
+
+            <div class="bento">
+                <article class="tile tile--event reveal reveal--scale">
+                    <p class="tile__label">The Plan</p>
+                    <h3 class="tile__event">Candlelight: Timeless Love Songs from Classic Films</h3>
+                </article>
+
+                <article class="tile tile--date reveal reveal--scale" style="--d:.1s">
+                    <svg class="tile__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="5" width="17" height="15.5" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    <p class="tile__label">Date &amp; Time</p>
+                    <p class="tile__big">Sat 14 Feb</p>
+                    <p class="tile__time">7:00 PM</p>
+                </article>
+
+                <article class="tile tile--venue reveal reveal--scale" style="--d:.2s">
+                    <svg class="tile__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+                    <p class="tile__label">Address</p>
+                    <p class="tile__venue">The Quorum Gurgaon</p>
+                    <address>
+                        Two Horizon Center,<br>
+                        First Floor, Golf Course Road,<br>
+                        DLF Phase 5, Sector 43, Gurugram
+                    </address>
+                </article>
+
+                <article class="tile tile--pickup reveal reveal--scale" style="--d:.1s">
+                    <svg class="tile__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 16.5V12l2-5.2A2 2 0 0 1 8.9 5.5h6.2a2 2 0 0 1 1.9 1.3L19 12v4.5M5 12h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><path d="M4 16.5h16v2a1 1 0 0 1-1 1h-1.5a1 1 0 0 1-1-1v-.5h-9v.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" fill="currentColor"/><circle cx="8" cy="14.3" r="1" fill="currentColor"/><circle cx="16" cy="14.3" r="1" fill="currentColor"/></svg>
+                    <p class="tile__label">Pickup</p>
+                    <p class="tile__pickup">I will pick you up!</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Made with love, for Anjula.</p>
+    </footer>
 </body>
 </html>
